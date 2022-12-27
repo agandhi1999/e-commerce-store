@@ -17,7 +17,7 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }]
 }
 
-const clearCartItem = (cartItems, cartItemToClear) => cartItems.filter((cartItem) => cartItem.id != cartItemToClear.id);
+const clearCartItem = (cartItems, cartItemToClear) => cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
 const removeCartItem = (cartItems, cartItemToRemove) => {
     // If quantity hits 0, then remove the item altogether
