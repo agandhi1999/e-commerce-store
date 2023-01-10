@@ -13,6 +13,7 @@ const PaymentForm = () => {
     const elements = useElements();
     const amount = useSelector(selectCartTotal);
     const currentUser = useSelector(selectCurrentUser);
+    const { displayName } = currentUser;
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
     const paymentHandler = async (e) => {
@@ -22,6 +23,7 @@ const PaymentForm = () => {
         }
         
         setIsProcessingPayment(true);
+        
         const response = await fetch('/.netlify/functions/create-payment-intent', {
             method: 'post',
             headers: {
@@ -36,7 +38,7 @@ const PaymentForm = () => {
             payment_method: {
                 card: elements.getElement(CardElement),
                 billing_details: {
-                    name: currentUser ? currentUser : "Guest",
+                    name: displayName ? displayName : "Guest",
                 }
             }
         });
